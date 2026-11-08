@@ -391,7 +391,7 @@ footer.site .script { font-size: 1.6rem; }
 .hero .paths { margin-top: 6px; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; opacity: 0; transition: opacity 1s 1.6s; }
 .hero .paths .btn { padding: 13px 20px; }
 [data-stage="named"] .hero .role, [data-stage="named"] .hero .paths { opacity: 1; }
-.hero .controls { position: absolute; right: var(--g-r); bottom: 14px; z-index: 3; display: flex; gap: 8px; }
+.hero .controls { position: static; z-index: 3; display: flex; justify-content: center; gap: 8px; margin-top: 2px; }
 .hero .controls button { font: 400 .55rem/1 var(--f-display); letter-spacing: .24em; text-transform: uppercase; color: var(--mist); background: rgba(15,14,14,.6); border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; cursor: pointer; }
 .hero .controls button:hover { color: var(--white); border-color: var(--rose); }
 [data-reduced] .hero .brand { -webkit-mask-position: 0 0; mask-position: 0 0; animation: none; }
@@ -447,7 +447,6 @@ footer.site .script { font-size: 1.6rem; }
   .udyam { grid-template-columns: 1fr; gap: 2px; }
   .udyam dd { margin-bottom: 10px; }
   .hero .words { top: calc(env(safe-area-inset-top, 0px) + 118px); letter-spacing: .26em; }
-  .hero .controls { position: static; justify-content: center; margin-top: 4px; }
   .hero .paths .btn { padding: 11px 15px; font-size: .58rem; }
   .thread { display: none; }
 }
