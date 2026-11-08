@@ -413,7 +413,8 @@ footer.site .script { font-size: 1.6rem; }
   .safar, .studio-in, .contact-grid, .case { grid-template-columns: 1fr; }
   .case .side { position: static; }
   .stats { grid-template-columns: 1fr 1fr; }
-  .services, .brands { grid-template-columns: 1fr 1fr; }
+  .services, .brands { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brands li { padding: 20px 14px; min-height: 84px; overflow-wrap: anywhere; }
   .process { grid-template-columns: 1fr 1fr; }
   .founder { grid-template-columns: 1fr; }
   .stat:nth-child(3) { border-left: 0; }
@@ -456,3 +457,29 @@ footer.site .script { font-size: 1.6rem; }
 /* CV page */
 .cv-pages { display: grid; gap: 28px; justify-items: center; }
 .cv-pages img { width: min(100%, 900px); height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0,0,0,.45); background: #fff; }
+
+/* ---------- phones: keep the whole hero on one screen, even with Safari text zoom ---------- */
+#skip, #replay { display: inline-flex; }
+[data-stage="named"] #skip { display: none; }
+:root:not([data-stage="named"]) #replay { display: none; }
+@media (max-width: 700px) {
+  header.site { gap: 8px; padding-top: calc(env(safe-area-inset-top, 0px) + 10px); }
+  .mark { gap: 10px; }
+  .mark svg { width: 32px; }
+  .mark span { font-size: 1.4rem; }
+  .menu { padding: 3px; }
+  .menu a { padding: 8px 8px; }
+  .hero { min-height: 440px; }
+  .hero .words { top: calc(env(safe-area-inset-top, 0px) + 100px); }
+  .hero .id { bottom: max(12px, 2.2vh); gap: 7px; padding-inline: 16px; }
+  .hero .brand { gap: 6px; }
+  .hero .brand .bw { font-size: clamp(1rem, 6.4vw, 1.7rem); letter-spacing: .07em; white-space: nowrap; }
+  .hero .brand .tg { font-size: clamp(.48rem, 2.4vw, .7rem); letter-spacing: .4em; padding-left: .4em; white-space: nowrap; }
+  .hero .role { font-size: clamp(.66rem, 3.2vw, .82rem); line-height: 1.45; max-width: 26em; }
+  .hero .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: min(100%, 340px); margin-top: 4px; }
+  .hero .paths .btn { justify-content: center; padding: 11px 6px; font-size: clamp(.48rem, 2.45vw, .58rem); letter-spacing: .13em; white-space: nowrap; gap: 8px; }
+  .hero .paths .btn.solid { grid-column: 1 / -1; }
+  .hero .controls { margin-top: 0; }
+  .hero .controls button { padding: 6px 12px; font-size: .5rem; }
+}
+.hero .role .nw { white-space: nowrap; }

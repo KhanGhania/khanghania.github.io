@@ -49,14 +49,16 @@
 
   // Fit the emblems into the free band between the words (top) and the identity block (bottom),
   // so nothing overlaps on short laptop screens or phones.
-  function freeBand() {
+  function freeBand(lionStage) {
     const hr = hero.getBoundingClientRect();
     const words = hero.querySelector(".words"), id = hero.querySelector(".id");
     const nav = document.querySelector("header.site");
     let top = 0;
     if (nav) top = Math.max(top, nav.getBoundingClientRect().bottom - hr.top);
     if (words) top = Math.max(top, words.getBoundingClientRect().bottom - hr.top);
-    const bottom = id ? id.getBoundingClientRect().top - hr.top : H;
+    // The lion shows before the name and buttons appear, so it may use the space down to the replay/skip row.
+    const ctl = hero.querySelector(".controls");
+    const bottom = lionStage && ctl ? ctl.getBoundingClientRect().top - hr.top - 10 : id ? id.getBoundingClientRect().top - hr.top : H;
     const gap = Math.max(14, H * 0.025);
     return { top: top + gap, bottom: Math.max(top + gap + 120, bottom - gap) };
   }
@@ -70,9 +72,10 @@
     const band = freeBand();
     const bh = band.bottom - band.top;
     const cx = W / 2, cy = band.top + bh / 2;
-    const lh = Math.min(bh, W * 0.82 * (265 / 220));
+    const lb = freeBand(true), lbh = Math.min(lb.bottom - lb.top, bh * 1.6);
+    const lh = Math.min(lbh, W * 0.82 * (265 / 220));
     const ls = lh / lion.viewBox[3];
-    lionBox = { s: ls, x: cx - (lion.viewBox[2] * ls) / 2, y: cy - lh / 2 };
+    lionBox = { s: ls, x: cx - (lion.viewBox[2] * ls) / 2, y: lb.top + (lb.bottom - lb.top) / 2 - lh / 2 };
     const ww = Math.min(W * (small ? 0.78 : 0.46), bh * 0.94 * (wingBounds.w / wingBounds.h));
     const ws = ww / wingBounds.w;
     wingBox = { s: ws, x: cx - (wingBounds.x + wingBounds.w / 2) * ws, y: cy - (wingBounds.y + wingBounds.h / 2) * ws };
